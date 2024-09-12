@@ -1,0 +1,265 @@
+<!doctype html>
+<html>
+
+<head>
+  <style>
+    body::before {
+      content: "";
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: url(../frontend/ITMO_University.png)  center/cover;
+      opacity: 0.5;
+    }
+    body{
+      font-family: "Comfortaa", sans-serif;
+      background-size: 100%;
+
+    }
+    #CheckButton p, [id$="value"]{
+      font-family: "Comfortaa", sans-serif;
+    }
+
+    .cap, .container{
+      width: 100%;
+      height: fit-content;
+      margin-top: 30px;
+      background-color:  rgba(0, 29, 244, 0.05);
+      backdrop-filter: blur(5px);
+    }
+
+    .cap {
+      margin-top: 0px;
+      padding: 5px;
+      h1, h2, p {
+        text-align: center;
+        color: blue;
+        font-size: 30px;
+      }
+      h2 {
+        font-size: 25px;
+      }
+
+      p {
+        font-size: 20px;
+      }
+
+    }
+    /*.container{*/
+    /*  width: 100%;*/
+    /*  height: fit-content;*/
+    /*  margin-top: 30px;*/
+    /*  background-color:  rgba(0, 29, 244, 0.05);*/
+    /*  backdrop-filter: blur(5px);*/
+    /*}*/
+
+    .container, form, #CheckField{
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+    }
+
+    form, #CheckField{
+      flex-direction: column;
+      padding: 50px;
+    }
+
+    [class^="box-"] {
+      padding: 5px;
+      width: 100%;
+
+      height: fit-content;
+      border-style: solid;
+      border-color: #4c4c4c;
+      border-width: 1px;
+      border-radius: 10px;
+    }
+
+    .box-4 {
+      width: 300px;
+      height: 300px;
+
+    }
+    .box-5{
+      #CheckButton{
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0);
+        border-width: 0;
+        border-radius: 5px;
+      }
+    }
+
+
+    .box-6{
+      background-color: white;
+    }
+
+    .box-7{
+      width: fit-content;
+      height: fit-content;
+    }
+
+
+
+    td {
+      border: 1px solid rgba(0, 0, 0, 0.5);
+    }
+
+    #ImgBox {
+      background-color: white;
+    }
+
+    #CheckButton:hover {
+      background-color: #a5bdf8;
+    }
+
+    #CheckButton:active {
+      background-color: cornflowerblue;
+    }
+
+    .geometryShape {
+      fill: rgba(0, 0, 255, 0.5);
+    }
+
+
+  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+  <link rel="stylesheet" href="css/style.css">
+  <meta name="description" content="">
+
+  <meta property="og:title" content="">
+  <meta property="og:type" content="">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
+
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon.png">
+
+  <link rel="manifest" href="site.webmanifest">
+  <meta name="theme-color" content="#fafafa">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Nerko+One&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+<div class = "cap">
+  <h1>Покалюхин Илья Игоревич</h1>
+  <h2>Группа: P3210</h2>
+  <p>Вариант: 488782</p>
+</div>
+
+<div class="container">
+  <form>
+    <div class="box-1">
+      <label>Изменение X</label>
+      <p><input type="text" id="Xvalue" name="Xvalue" placeholder="Значение X (-5, 3)" required /></p>
+
+    </div>
+
+    <div class="box-2">
+      <label>Изменение Y</label>
+      <p><input type="text" id="Yvalue" name="Yvalue" placeholder="Значение Y (-5, 5)" required /></p>
+
+    </div>
+
+    <div class="box-3" >
+      <label>Изменение R</label>
+      <p><input type="text" id="Rvalue" name="Rvalue" placeholder="Значение R (1, 4)" required /></p>
+
+    </div>
+  </form>
+
+  <div class="box-4" id = "ImgBox">
+    <svg height= width="300">
+      <!-- shapes-->
+      <rect x = 50 y = 150 width="100" height="50" class  = geometryShape />
+      <polygon points="150,200 150,150 250,150"  class = geometryShape />
+      <path d="M150,100 V150 H200 A 50 50, 270, 0, 0, 150 100" class="geometryShape" />
+
+      <!-- X axis -->
+      <line stroke="black" x1 = 0 x2 = 300 y1 =150  y2 = 150 />
+      <line stroke="black" x1 = 290 x2 = 300 y1 =145  y2 = 150 />
+      <line stroke="black" x1 = 290 x2 = 300 y1 =155  y2 = 150 />
+      <text fill="black" x=288 y=140>X</text>
+
+      <!-- Y axis -->
+      <line stroke="black" x1 = 150 x2 = 150 y1 =0  y2 = 300 />
+      <line stroke="black" x1 = 150 x2 = 155 y1 =0  y2 = 10 />
+      <line stroke="black" x1 = 150 x2 = 145 y1 =0  y2 = 10 />
+      <text fill="black" x = 160 y= 12>Y</text>
+
+      <!-- X points -->
+      <line stroke="black" x1 = 50 x2 = 50 y1 =153  y2 = 147 />
+      <line stroke="black" x1 = 100 x2 = 100 y1 =153  y2 = 147 />
+      <line stroke="black" x1 = 200 x2 = 200 y1 =153  y2 = 147 />
+      <line stroke="black" x1 = 250 x2 = 250 y1 =153  y2 = 147 />
+
+      <!-- X points R-->
+      <text fill="black" x = 35 y= 140 font-size="12" >-R/2</text>
+      <text fill="black" x = 90 y= 140 font-size="12" >-R</text>
+      <text fill="black" x = 188 y= 140 font-size="12" >R/2</text>
+      <text fill="black" x = 245 y= 140 font-size="12" >R</text>
+
+      <!-- Y points -->
+      <line stroke="black" x1 = 147 x2 = 153 y1 =50  y2 = 50 />
+      <line stroke="black" x1 = 147 x2 = 153 y1 =100  y2 = 100 />
+      <line stroke="black" x1 = 147 x2 = 153 y1 =200  y2 = 200 />
+      <line stroke="black" x1 = 147 x2 = 153 y1 =250  y2 = 250 />
+
+      <!-- Y points R-->
+      <text fill="black" x = 160 y= 55 font-size="12" >R</text>
+      <text fill="black" x = 160 y= 105 font-size="12" >R/2</text>
+      <text fill="black" x = 160 y= 205 font-size="12" >-R/2</text>
+      <text fill="black" x = 160 y= 255 font-size="12" >-R</text>
+
+
+    </svg>
+  </div>
+  <div id = "CheckField">
+    <div class="box-5">
+      <button id = CheckButton type="button"><p>Проверить</p></button>
+      <script src="ValidatorScript.js"></script>
+    </div>
+
+    <div class = "box-6">
+      <p>Первичная валидация данных</p>
+      <p id = dialogWindow></p>
+    </div>
+  </div>
+  <div class = "box-7">
+    <table>
+      <thead>
+      <tr>
+        <td>X value</td>
+        <td>Y value</td>
+        <td>R value</td>
+        <td>Result</td>
+      </tr>
+      </thead>
+      <tbody>
+      <td>1</td>
+      <td>2</td>
+      <td>3</td>
+      <td>true</td>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+</body>
+
+</html>
