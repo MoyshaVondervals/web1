@@ -14,7 +14,6 @@ document.querySelector("#CheckButton").onclick = function () {
 
     sendRequest(Xvalue, Yvalue, Rvalue)
       .then((result) => {dialog("blue", "Данные валидны X:" + Xvalue + " Y:" + Yvalue + " R: " + Rvalue)})
-      .catch((error) => {dialog("red","Ошибка запроса к серверу.")});
 
   }else{
     dialog("red","Исправте значения!" )
@@ -35,8 +34,14 @@ async function sendRequest(Xvalue, Yvalue, Rvalue){
       x:Xvalue,
       y:Yvalue,
       r: Rvalue
-    })
+    }),
 
-  });
-  return response.json()
+
+  })
+  //   .then(response=>response.json()).then(data=>{
+  //   const status = data.status
+  //   alert(status)
+  //
+  // })
+  // return response.json()
 }
