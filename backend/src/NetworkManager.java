@@ -8,24 +8,34 @@ import java.nio.charset.StandardCharsets;
 public class NetworkManager {
 
     public static void sendRequest(){
-        double startTime = System.currentTimeMillis();
+
         FCGIInterface fcgi = new FCGIInterface();
-        System.err.println(fcgi);
         while (fcgi.FCGIaccept()>=0){
+            double startTime = System.currentTimeMillis();
             String content = """
                     {
-                    "status": %s,
+                    "Status": %s,
+                    "time": %s
                     }
                     """;
+
             String request = readRequestBody();
-            content = content.formatted("true");
+//            System.err.println("Request from server: "+request);
+
+            double endTime = System.currentTimeMillis();
+            content = content.formatted(Validator.isValid(request), (endTime - startTime)/1000);
+
 
             var httpResponse = """
                     HTTP/1.1 200 OK
                     Content-Type: application/json
                     Content-Length: %d
+                    
+                    
                     %s
-                    """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content );
+                    """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
+//            System.err.println(httpResponse);
+//            Validator.isValid(httpResponse)
             System.out.println(httpResponse);
 
         }
@@ -43,7 +53,7 @@ public class NetworkManager {
             buffer.clear();
             return new String(requestBodyRaw, StandardCharsets.UTF_8);
         }catch (Exception e) {
-            return "";
+            return e.toString();
         }
     }
 }
