@@ -3,7 +3,10 @@
 let tableSize = 0;
 
 
-document.querySelector("#CheckButton").onclick = function () {
+// document.querySelector("#CheckButton").onclick = function () {
+function clickHandler() {
+
+
   let Xvalue = document.getElementById("Xvalue").value;
   let Yvalue = document.getElementById("Yvalue").value;
   let Rvalue = document.getElementById("Rvalue").value;
@@ -36,24 +39,15 @@ async function sendRequest(Xvalue, Yvalue, Rvalue){
       r: Rvalue
     }),
   })
-    // .then(response=>response.json()).then(data=>{
-    //     const status = data.status
-    //     alert(status)
-    //   })
-    //   return response.json()
+
     .then(response => response.json())
     .then(data => {
-
-      resultTable(data.Status,data.time, Xvalue, Yvalue, Rvalue)
+      console.log(data.Etime)
+      resultTable(data, Xvalue, Yvalue, Rvalue)
     })
 }
 
-function resultTable(status, time, Xvalue, Yvalue, Rvalue){
-  let date = new Date()
-  let hours = date.getHours() < 10 ? '0' + date.getHours() : date.getHours();
-  let minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes();
-  let seconds = date.getSeconds() < 10 ? '0' + date.getSeconds()  : date.getSeconds();
-
+function resultTable(data, Xvalue, Yvalue, Rvalue){
   let tableBody = document.getElementById("resultTableBody")
   let row = tableBody.insertRow(tableSize)
 
@@ -66,9 +60,9 @@ function resultTable(status, time, Xvalue, Yvalue, Rvalue){
   row.insertCell().innerHTML = Xvalue
   row.insertCell().innerHTML = Yvalue
   row.insertCell().innerHTML = Rvalue
-  row.insertCell().innerHTML = status
-  row.insertCell().innerHTML = time
-  row.insertCell().innerHTML = hours+":"+minutes+":"+seconds
+  row.insertCell().innerHTML = data.Status
+  row.insertCell().innerHTML = data.Etime
+  row.insertCell().innerHTML = data.Ctime
 
 
 }

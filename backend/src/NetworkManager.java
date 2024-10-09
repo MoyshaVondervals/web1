@@ -4,6 +4,10 @@ import org.apache.log4j.Logger;
 import java.io.Console;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.sql.Date;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 
 public class NetworkManager {
 
@@ -15,15 +19,17 @@ public class NetworkManager {
             String content = """
                     {
                     "Status": %s,
-                    "time": %s
+                    "Etime": %s,
+                    "Ctime": "%s"
                     }
                     """;
 
             String request = readRequestBody();
-//            System.err.println("Request from server: "+request);
-
             double endTime = System.currentTimeMillis();
-            content = content.formatted(Validator.isValid(request), (endTime - startTime)/1000);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            LocalTime time = LocalTime.parse(LocalTime.now().format(formatter));
+            System.err.println("#############################"+time);
+            content = content.formatted(Validator.isValid(request), (endTime - startTime)/1000, time.toString());
 
 
             var httpResponse = """
@@ -34,8 +40,6 @@ public class NetworkManager {
                     
                     %s
                     """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
-//            System.err.println(httpResponse);
-//            Validator.isValid(httpResponse)
             System.out.println(httpResponse);
 
         }
@@ -45,9 +49,7 @@ public class NetworkManager {
             FCGIInterface.request.inStream.fill();
             var contentLength = FCGIInterface.request.inStream.available();
             var buffer = ByteBuffer.allocate(contentLength);
-            var readBytes =
-                    FCGIInterface.request.inStream.read(buffer.array(), 0,
-                            contentLength);
+            var readBytes = FCGIInterface.request.inStream.read(buffer.array(), 0, contentLength);
             var requestBodyRaw = new byte[readBytes];
             buffer.get(requestBodyRaw);
             buffer.clear();

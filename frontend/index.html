@@ -24,7 +24,7 @@
       width: 100%;
       height: fit-content;
       margin-top: 30px;
-      background-color:  rgba(0, 29, 244, 0.05);
+      background-color:  rgba(0, 244, 29, 0.05);
       backdrop-filter: blur(5px);
     }
 
@@ -33,7 +33,7 @@
       padding: 5px;
       h1, h2, p {
         text-align: center;
-        color: blue;
+        color: green;
         font-size: 30px;
       }
       h2 {
@@ -45,22 +45,16 @@
       }
 
     }
-    /*.container{*/
-    /*  width: 100%;*/
-    /*  height: fit-content;*/
-    /*  margin-top: 30px;*/
-    /*  background-color:  rgba(0, 29, 244, 0.05);*/
-    /*  backdrop-filter: blur(5px);*/
-    /*}*/
 
-    .container, form, #CheckField{
+
+    .container, #form, #CheckField{
       display: flex;
       gap: 20px;
       align-items: center;
 
     }
 
-    form, #CheckField{
+    #form, #CheckField{
       flex-direction: column;
       padding: 50px;
     }
@@ -159,7 +153,8 @@
 </div>
 
 <div class="container">
-  <form>
+  <div id = "form">
+<!--  <form>-->
     <div class="box-1">
       <label>Изменение X</label>
       <p><input type="text" id="Xvalue" name="Xvalue" placeholder="Значение X (-5, 3)" required /></p>
@@ -177,7 +172,8 @@
       <p><input type="text" id="Rvalue" name="Rvalue" placeholder="Значение R (1, 4)" required /></p>
 
     </div>
-  </form>
+  </div>
+<!--  </form>-->
 
   <div class="box-4" id = "ImgBox">
     <svg height="300" width="300">
@@ -226,8 +222,7 @@
 
   <div id = "CheckField">
     <div class="box-5">
-      <button id = CheckButton type="button"><p>Проверить</p></button>
-      <script src="ValidatorScript.js"></script>
+      <button id = CheckButton type="button" onclick="clickHandler()"><p>Проверить</p></button>
     </div>
 
     <div class = "box-6">
@@ -255,10 +250,7 @@
   </div>
 </div>
 
-
-
-
-
+<script src = "ValidatorScript.js"></script>
 </body>
 
 </html>
