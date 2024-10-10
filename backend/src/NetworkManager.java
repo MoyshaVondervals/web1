@@ -1,11 +1,8 @@
 import com.fastcgi.FCGIInterface;
-import org.apache.log4j.Logger;
 
-import java.io.Console;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.sql.Date;
-import java.sql.Time;
+
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -19,7 +16,7 @@ public class NetworkManager {
             String content = """
                     {
                     "Status": %s,
-                    "Etime": %s,
+                    "Etime": "%s",
                     "Ctime": "%s"
                     }
                     """;
@@ -29,18 +26,21 @@ public class NetworkManager {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
             LocalTime time = LocalTime.parse(LocalTime.now().format(formatter));
             System.err.println("#############################"+time);
+
             content = content.formatted(Validator.isValid(request), (endTime - startTime)/1000, time.toString());
 
 
-            var httpResponse = """
-                    HTTP/1.1 200 OK
-                    Content-Type: application/json
-                    Content-Length: %d
-                    
-                    
-                    %s
-                    """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
-            System.out.println(httpResponse);
+                var httpResponse = """
+                        HTTP/1.1 200 OK
+                        Content-Type: application/json
+                        Content-Length: %d
+                        
+                        
+                        %s
+                        """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
+                System.out.println(httpResponse);
+
+
 
         }
     }
