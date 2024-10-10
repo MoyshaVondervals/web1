@@ -35,7 +35,7 @@ async function sendRequest(Xvalue, Yvalue, Rvalue) {
     .then((data) => {
       console.log(data.Etime);
       resultTable(data, Xvalue, Yvalue, Rvalue);
-    });
+    }).catch(() => dialog('red', 'Ошибка на сервере'));
 }
 
 function resultTable(data, Xvalue, Yvalue, Rvalue) {
