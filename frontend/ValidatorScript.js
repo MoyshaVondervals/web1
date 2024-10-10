@@ -4,9 +4,9 @@ function clickHandler() {
   const Xvalue = document.getElementById('Xvalue').value;
   const Yvalue = document.getElementById('Yvalue').value;
   const Rvalue = document.getElementById('Rvalue').value;
-  if (!isNaN(+Xvalue) && +Xvalue > -5 && +Xvalue < 3 && Xvalue !== ''
-    && !isNaN(+Yvalue) && +Yvalue > -5 && +Yvalue < 5 && Yvalue !== ''
-    && !isNaN(+Rvalue) && +Rvalue > 1 && +Rvalue < 4 && Rvalue !== '') {
+  if (!Number.isNaN(+Xvalue) && +Xvalue > -5 && +Xvalue < 3 && Xvalue !== ''
+    && !Number.isNaN(+Yvalue) && +Yvalue > -5 && +Yvalue < 5 && Yvalue !== ''
+    && !Number.isNaN(+Rvalue) && +Rvalue > 1 && +Rvalue < 4 && Rvalue !== '') {
     console.log('Data valid: ', Xvalue, Yvalue, Rvalue);
     sendRequest(Xvalue, Yvalue, Rvalue)
       .then(() => { dialog('blue', `Данные валидны X:${Xvalue} Y:${Yvalue} R: ${Rvalue}`); });
